@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { TaskListContext } from '../context/TaskListContext';
 
 import { Form, TaskInput, AddButton, ClearButton, Buttons } from './Styles';
@@ -9,9 +9,12 @@ const TaskForm = () => {
   );
   const [title, setTitle] = useState('');
 
+  const inputTask = useRef();
+
   useEffect(() => {
     if (editItem) {
       setTitle(editItem.title);
+      inputTask.current.focus();
     } else {
       setTitle('');
     }
@@ -40,12 +43,15 @@ const TaskForm = () => {
         placeholder="Add Task..."
         value={title}
         required
+        ref={inputTask}
       />
       <Buttons>
         <AddButton type="submit">
           {editItem ? 'Edit Task' : 'Add Task'}
         </AddButton>
-        <ClearButton onClick={clearTaskList}>Clear</ClearButton>
+        <ClearButton type="button" onClick={clearTaskList}>
+          Clear
+        </ClearButton>
       </Buttons>
     </Form>
   );
