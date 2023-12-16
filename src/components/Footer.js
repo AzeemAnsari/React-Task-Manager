@@ -5,7 +5,7 @@ import { FooterContainer } from './Styles';
 const Footer = () => {
   return (
     <FooterContainer>
-      &copy; 2020 -{' '}
+      &copy; {new Date().getFullYear()} -{' '}
       <a href="https://www.azeemansari.me" target="_blank" rel="noreferrer">
         Azeem Ansari
       </a>
